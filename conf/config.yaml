@@ -1,0 +1,5 @@
+# 服务名称
+SERVER: 'godaemon'
+
+# 服务启动端口
+SERVER_PORT: ':10600' 

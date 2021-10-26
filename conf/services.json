@@ -1,0 +1,21 @@
+[
+    {
+        "name":"dbproxy" ,
+        "priority":3 ,
+        "isInit":false,
+        "isDaemon":true,
+        "script":{
+            "execPath":"../air_dbproxy/run.sh" ,
+            "programFilePath":"/air_dbproxy/air_dbproxy" , 
+            "startCommand":"start" , 
+            "stopCommand":"stop"
+        },
+        "healthCheck":{
+            "isHealthCheck":false ,
+            "interval":30,
+            "start_period":30,
+            "retries":3,
+            "cmd":"curl --connect-timeout 10 -m 20 http://127.0.0.1:10700"
+        }
+    }
+]

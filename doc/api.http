@@ -1,0 +1,79 @@
+
+
+# ---------------------------- 服务配置
+
+### 获取服务配置列表
+GET http://127.0.0.1:10600/serviceInfo/get HTTP/1.1
+
+### 获取单个服务配置
+GET http://127.0.0.1:10600/serviceInfo/find?name=air_sync HTTP/1.1
+
+### 更新或者增加服务配置
+POST http://127.0.0.1:10600/serviceInfo/set HTTP/1.1
+content-type: application/json
+
+{
+        "name":"air_sync" ,
+        "priority":3 ,
+        "isInit":false,
+        "isDaemon":true,
+        "script":{
+            "execPath":"../../机载端数据处理/air_sync/run.sh" ,
+            "programFilePath":"/mnt/e/project/机载端数据处理/air_sync/air_sync" , 
+            "startCommand":"start" , 
+            "stopCommand":"stop"
+        },
+        "healthCheck":{
+            "isHealthCheck":true ,
+            "api":"http://127.0.0.1:10400/healthCheck",
+            "rsp":{
+                "success":{
+                    "key":"code", 
+                    "val":"0"
+                }
+            }
+        }
+}
+
+### 删除单个服务配置
+DELETE http://127.0.0.1:10600/serviceInfo/del?name=air_sync HTTP/1.1
+
+
+
+# ---------------------------- 任务配置
+
+### 获取服务配置列表
+GET http://127.0.0.1:10600/task/get HTTP/1.1
+
+### 获取单个服务配置
+GET http://127.0.0.1:10600/task/find?name=air_sync HTTP/1.1
+
+### 更新或者增加服务配置
+POST http://127.0.0.1:10600/task/set HTTP/1.1
+content-type: application/json
+
+{
+        "name":"air_sync" ,
+        "priority":3 ,
+        "isInit":false,
+        "isDaemon":true,
+        "script":{
+            "execPath":"../../机载端数据处理/air_sync/run.sh" ,
+            "programFilePath":"/mnt/e/project/机载端数据处理/air_sync/air_sync" , 
+            "startCommand":"start" , 
+            "stopCommand":"stop"
+        },
+        "healthCheck":{
+            "isHealthCheck":true ,
+            "api":"http://127.0.0.1:10400/healthCheck",
+            "rsp":{
+                "success":{
+                    "key":"code", 
+                    "val":"0"
+                }
+            }
+        }
+}
+
+### 删除单个服务配置
+DELETE http://127.0.0.1:10600/task/del?name=air_sync HTTP/1.1
