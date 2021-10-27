@@ -4,23 +4,21 @@ import (
 	"time"
 
 	"godaemon/initialization"
-	"godaemon/logger"
 	"godaemon/routers"
+
+	"godaemon/logger"
 
 	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
 )
 
-// RunServer 跑起服务
+// RunServer
 func RunServer() {
-	// 取出路由
 	router := routers.Routers()
-	// 取出注册端口
 	address := initialization.GetBaseConfig().SERVER_PORT
-	// 初始化服务
 	s := initServer(address, router)
 
-	logger.Log().Info("server run success on %s \n", address)
+	logger.Log().Info("server run success on " + address)
 	logger.Log().Info(s.ListenAndServe().Error())
 }
 

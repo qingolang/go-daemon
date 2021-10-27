@@ -40,7 +40,7 @@ func (t *task) start() (state bool, err error) {
 	if exit {
 		return true, err
 	}
-	logger.Log().Warning(t.ServiceInfo.Name + " start ....")
+	logger.Log().Warn(t.ServiceInfo.Name + " start ....")
 	cmd := exec.Command(t.ServiceInfo.Script.ExecPath, t.ServiceInfo.Script.StartCommand)
 	cmd.Env = os.Environ()
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true, Pgid: 0}
@@ -88,7 +88,7 @@ func (t *task) healthCheck() (state bool, err error) {
 		if err == nil {
 			return true, nil
 		}
-		logger.Log().Warning(t.ServiceInfo.HealthCheck.CMD + " ERR : " + err.Error())
+		logger.Log().Warn(t.ServiceInfo.HealthCheck.CMD + " ERR : " + err.Error())
 		time.Sleep(time.Second * time.Duration(t.ServiceInfo.HealthCheck.Interval))
 		num--
 	}
@@ -124,14 +124,14 @@ func (t *task) isProcessExist() (exist bool, err error) {
 	if len(t.Pids) != 0 {
 		return true, nil
 	}
-	logger.Log().Warning(t.ServiceInfo.Name + " process not exits !")
+	logger.Log().Warn(t.ServiceInfo.Name + " process not exits !")
 	return
 }
 
 // Stop  停止
 func (t *task) stop() (state bool, err error) {
 
-	logger.Log().Warning(t.ServiceInfo.Name + " stop ....")
+	logger.Log().Warn(t.ServiceInfo.Name + " stop ....")
 
 	exit, err := t.isProcessExist()
 	if err != nil {
@@ -251,7 +251,7 @@ func (t *task) daemon() {
 
 		processExist, err := t.isProcessExist()
 		if err != nil {
-			logger.Log().Error(t.ServiceInfo.Name+" func isProcessExist  ERR: %s", err.Error())
+			logger.Log().Error(t.ServiceInfo.Name + " func isProcessExist  ERR: " + err.Error())
 			time.Sleep(DAEMON_DETECTION)
 			continue
 		}
@@ -262,7 +262,7 @@ func (t *task) daemon() {
 			if t.ServiceInfo.HealthCheck.IsHealthCheck {
 				apiState, err := t.healthCheck()
 				if err != nil {
-					logger.Log().Error(t.ServiceInfo.Name+" func  healthCheck  ERR: %s", err.Error())
+					logger.Log().Error(t.ServiceInfo.Name + " func  healthCheck  ERR: " + err.Error())
 					t.stopHandle()
 					time.Sleep(DAEMON_DETECTION)
 					continue
@@ -271,7 +271,7 @@ func (t *task) daemon() {
 				if apiState {
 					t.State = 2
 				} else {
-					logger.Log().Warning(t.ServiceInfo.Name + " healthCheck 验证失败 ！")
+					logger.Log().Warn(t.ServiceInfo.Name + " healthCheck 验证失败 ！")
 					t.stopHandle()
 				}
 
@@ -296,14 +296,14 @@ func (t *task) stopHandle() {
 	t.State = 3
 	stopState, err := t.stop()
 	if err != nil {
-		logger.Log().Error(t.ServiceInfo.Name+" func stop  ERR: %s", err.Error())
+		logger.Log().Error(t.ServiceInfo.Name + " func stop  ERR: " + err.Error())
 		return
 	}
 	if stopState {
 		t.State = 0
 		return
 	}
-	logger.Log().Warning(t.ServiceInfo.Name + "   process stop fault  ")
+	logger.Log().Warn(t.ServiceInfo.Name + "   process stop fault  ")
 }
 
 // StartHandle
@@ -312,11 +312,11 @@ func (t *task) startHandle() {
 	// 未启动
 	startState, err := t.start()
 	if err != nil {
-		logger.Log().Error(t.ServiceInfo.Name+" func start  ERR: %s", err.Error())
+		logger.Log().Error(t.ServiceInfo.Name + " func start  ERR" + err.Error())
 		return
 	}
 	if startState {
 		return
 	}
-	logger.Log().Warning(t.ServiceInfo.Name + " process start fault ")
+	logger.Log().Warn(t.ServiceInfo.Name + " process start fault ")
 }

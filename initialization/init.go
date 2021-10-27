@@ -1,8 +1,6 @@
 package initialization
 
-import (
-	"godaemon/logger"
-)
+import "godaemon/logger"
 
 // Init 初始化数据
 func Init() (err error) {

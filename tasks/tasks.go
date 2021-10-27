@@ -1,8 +1,9 @@
 package tasks
 
 import (
-	"godaemon/logger"
 	"godaemon/model"
+
+	"godaemon/logger"
 )
 
 // UpTask 服务初始化使用
@@ -15,7 +16,7 @@ func UpTask(data model.Data) {
 
 		startState, err := t.start()
 		if err != nil {
-			logger.Log().Error(t.ServiceInfo.Name+" func start  ERR: %s", err.Error())
+			logger.Log().Error(t.ServiceInfo.Name + " func start  ERR: " + err.Error())
 		} else {
 			if !startState {
 				logger.Log().Error(t.ServiceInfo.Name + " process start fault ")

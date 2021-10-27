@@ -34,7 +34,7 @@
 - name 服务名称
 - priority 优先级
 - isInit 是否属于初始化服务 （如果为true 优先级高于所有 为false的服务）
-- isDaemon 是否守护进程（如果 false 仅air_nanny 服务启动时拉起一次）
+- isDaemon 是否守护进程（如果 false 仅godaemon 服务启动时拉起一次）
 - script 脚本
 	- execPath 脚本执行路径
 	- programFilePath 执行程序路径 程序自动拼接 公共工作路径（公共配置中的rootpath）
@@ -107,8 +107,8 @@ content-type: application/json
         "isInit":false,
         "isDaemon":true,
         "script":{
-            "execPath":"../../机载端数据处理/godbproxy/run.sh" ,
-            "programFilePath":"/mnt/e/project/机载端数据处理/godbproxy/godbproxy" , 
+            "execPath":"../godbproxy/run.sh" ,
+            "programFilePath":"/mnt/e/project/godbproxy/godbproxy" , 
             "startCommand":"start" , 
             "stopCommand":"stop"
         },
@@ -201,8 +201,8 @@ content-type: application/json
         "isInit":false,
         "isDaemon":true,
         "script":{
-            "execPath":"../../机载端数据处理/godbproxy/run.sh" ,
-            "programFilePath":"/mnt/e/project/机载端数据处理/godbproxy/godbproxy" , 
+            "execPath":"../../godbproxy/run.sh" ,
+            "programFilePath":"/mnt/e/project/godbproxy/godbproxy" , 
             "startCommand":"start" , 
             "stopCommand":"stop"
         },

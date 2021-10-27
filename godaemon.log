@@ -1,0 +1,7 @@
+{"lv":"info","ts":"2021-10-27T10:16:50+08:00","ca":"/mnt/e/pro/godaemon/core/core.go:21","ms":"server run success on :10600"}
+{"lv":"warn","ts":"2021-10-27T10:16:55+08:00","ca":"/mnt/e/pro/godaemon/tasks/daemon.go:127","ms":"godbproxy process not exits !"}
+{"lv":"warn","ts":"2021-10-27T10:16:55+08:00","ca":"/mnt/e/pro/godaemon/tasks/daemon.go:43","ms":"godbproxy start ...."}
+{"lv":"warn","ts":"2021-10-27T10:18:34+08:00","ca":"/mnt/e/pro/godaemon/tasks/daemon.go:127","ms":"godbproxy process not exits !"}
+{"lv":"warn","ts":"2021-10-27T10:18:39+08:00","ca":"/mnt/e/pro/godaemon/tasks/daemon.go:127","ms":"godbproxy process not exits !"}
+{"lv":"warn","ts":"2021-10-27T10:18:39+08:00","ca":"/mnt/e/pro/godaemon/tasks/daemon.go:43","ms":"godbproxy start ...."}
+{"lv":"info","ts":"2021-10-27T10:19:19+08:00","ca":"/mnt/e/pro/godaemon/core/core.go:22","ms":"accept tcp [::]:10600: use of closed network connection"}

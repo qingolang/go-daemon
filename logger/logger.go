@@ -1,26 +1,12 @@
 package logger
 
 import (
-	"fmt"
-
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
-var logger *Logger
-
-type Logger struct {
-	Core *zap.Logger
-}
-
-// 模块相关信息
-type ModuleInfo struct {
-	ModuleName string
-	Airlines   string
-	TailNo     string
-	Version    string
-}
+var logger *zap.Logger
 
 // 文件日志相关信息
 type LogInfo struct {
@@ -33,9 +19,7 @@ type LogInfo struct {
 }
 
 // 日志初始化
-func Init(logInfo *LogInfo) error {
-
-	logger = new(Logger)
+func Init(logInfo *LogInfo) {
 
 	// 本地存储日志文件初始化
 	hook := lumberjack.Logger{
@@ -69,41 +53,13 @@ func Init(logInfo *LogInfo) error {
 
 	// 生成本地存储文件接口
 	fileCore := zapcore.NewCore(logEncoder, fileLogWriter, logPriority)
-
 	var allCore []zapcore.Core
 	allCore = append(allCore, fileCore)
 	core := zapcore.NewTee(allCore...)
-	logger.Core = zap.New(core).WithOptions(zap.AddCaller())
-
-	return nil
-}
-
-// Panic 极端错误
-func (ll *Logger) Panic(format string, v ...interface{}) {
-	ll.Core.Panic(fmt.Sprintf(format, v...))
-}
-
-// Error 错误
-func (ll *Logger) Error(format string, v ...interface{}) {
-	ll.Core.Error(fmt.Sprintf(format, v...))
-}
-
-// Warning 警告
-func (ll *Logger) Warning(format string, v ...interface{}) {
-	ll.Core.Warn(fmt.Sprintf(format, v...))
-}
-
-// Info 信息
-func (ll *Logger) Info(format string, v ...interface{}) {
-	ll.Core.Info(fmt.Sprintf(format, v...))
-}
-
-// Debug 校验
-func (ll *Logger) Debug(format string, v ...interface{}) {
-	ll.Core.Debug(fmt.Sprintf(format, v...))
+	logger = zap.New(core).WithOptions(zap.AddCaller())
 }
 
 // Log 返回日志对象
-func Log() *Logger {
+func Log() *zap.Logger {
 	return logger
 }

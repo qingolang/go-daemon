@@ -3,11 +3,12 @@ package initialization
 import (
 	"encoding/json"
 	"godaemon/dao"
-	"godaemon/logger"
 	"godaemon/model"
 	"godaemon/tasks"
 	"io/ioutil"
 	"os"
+
+	"godaemon/logger"
 )
 
 // serviceData
@@ -56,7 +57,7 @@ func initServiceInfoData() (err error) {
 				tServiceInfo.Script.StartCommand == "" ||
 				tServiceInfo.Script.StopCommand == "" ||
 				tServiceInfo.Name == "" {
-				logger.Log().Error("服务配表错误或重复数据：%v ", tServiceInfo)
+				logger.Log().Error("服务配表错误或重复数据")
 				isExit = true
 				break
 			}

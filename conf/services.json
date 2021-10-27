@@ -1,21 +1,21 @@
 [
     {
-        "name":"dbproxy" ,
+        "name":"godbproxy" ,
         "priority":3 ,
         "isInit":false,
         "isDaemon":true,
         "script":{
-            "execPath":"../air_dbproxy/run.sh" ,
-            "programFilePath":"/air_dbproxy/air_dbproxy" , 
+            "execPath":"../godbproxy/run.sh" ,
+            "programFilePath":"/mnt/e/pro/godbproxy/godbproxy" , 
             "startCommand":"start" , 
             "stopCommand":"stop"
         },
         "healthCheck":{
             "isHealthCheck":false ,
-            "interval":30,
-            "start_period":30,
-            "retries":3,
-            "cmd":"curl --connect-timeout 10 -m 20 http://127.0.0.1:10700"
+            "interval":0,
+            "start_period":0,
+            "retries":0,
+            "cmd":""
         }
     }
 ]
