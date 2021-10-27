@@ -15,6 +15,8 @@ func (d *DaoServiceInfo) Del(name string) {
 	d.del(name)
 	d.writeFile()
 }
+
+// del
 func (d *DaoServiceInfo) del(name string) {
 	lock.Lock()
 	defer lock.Unlock()

@@ -21,9 +21,6 @@ const (
 	DAEMON_DETECTION = 3 * time.Second
 )
 
-// 可执行文件根目录
-var EXEC_BASE_PATH = "/opt/portal/media/tencent/portal"
-
 type task struct {
 	ServiceInfo   model.ServiceInfo
 	State         uint          // 0 已停止 1 正在启动 2 运行中 3 停止中 4 服务异常
@@ -118,7 +115,7 @@ func (t *task) isProcessExist() (exist bool, err error) {
 			if len(programFields) < 10 {
 				continue
 			}
-			if strings.Contains(programFields[10], EXEC_BASE_PATH+t.ServiceInfo.Script.ProgramFilePath) {
+			if strings.Contains(programFields[10], t.ServiceInfo.Script.ProgramFilePath) {
 				pid, _ := strconv.Atoi(psFields[i-3])
 				t.Pids = append(t.Pids, pid)
 			}

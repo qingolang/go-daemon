@@ -13,25 +13,19 @@ POST http://127.0.0.1:10600/serviceInfo/set HTTP/1.1
 content-type: application/json
 
 {
-        "name":"air_sync" ,
+        "name":"" ,
         "priority":3 ,
         "isInit":false,
         "isDaemon":true,
         "script":{
-            "execPath":"../../机载端数据处理/air_sync/run.sh" ,
-            "programFilePath":"/mnt/e/project/机载端数据处理/air_sync/air_sync" , 
-            "startCommand":"start" , 
-            "stopCommand":"stop"
+            "execPath":"" ,
+            "programFilePath":"" , 
+            "startCommand":"" , 
+            "stopCommand":""
         },
         "healthCheck":{
             "isHealthCheck":true ,
-            "api":"http://127.0.0.1:10400/healthCheck",
-            "rsp":{
-                "success":{
-                    "key":"code", 
-                    "val":"0"
-                }
-            }
+            ...
         }
 }
 
@@ -53,25 +47,18 @@ POST http://127.0.0.1:10600/task/set HTTP/1.1
 content-type: application/json
 
 {
-        "name":"air_sync" ,
-        "priority":3 ,
+        "name":"" ,
+        "priority": ,
         "isInit":false,
         "isDaemon":true,
         "script":{
-            "execPath":"../../机载端数据处理/air_sync/run.sh" ,
-            "programFilePath":"/mnt/e/project/机载端数据处理/air_sync/air_sync" , 
-            "startCommand":"start" , 
-            "stopCommand":"stop"
+            "execPath":"" ,
+            "programFilePath":"" , 
+            "startCommand":"" , 
+            "stopCommand":""
         },
         "healthCheck":{
-            "isHealthCheck":true ,
-            "api":"http://127.0.0.1:10400/healthCheck",
-            "rsp":{
-                "success":{
-                    "key":"code", 
-                    "val":"0"
-                }
-            }
+            ....
         }
 }
 
