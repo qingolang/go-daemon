@@ -13,6 +13,7 @@
     - [获取单个任务](#获取单个任务)
     - [更新或者增加任务](#更新或者增加任务)
     - [删除任务](#删除任务)
+- [运行](#运行)
 
 ### 简介
 微服务架构前期 ,服务高可用解决方案。
@@ -215,3 +216,17 @@ content-type: application/json
 ```http
 DELETE /task/del?name=godbproxy HTTP/1.1
 ```
+
+### 运行
+
+  1. git clone https://github.com/qingolang/godaemon.git
+  2. cd godaemon
+  3. 修改 conf/config.yaml
+  4. 完善 services.json 要守护的服务
+  5. 项目根目录下运行以下指令
+  
+  ```shell
+    go mod tidy
+    go build 
+    ./run.sh start 
+  ```
